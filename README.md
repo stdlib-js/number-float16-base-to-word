@@ -35,32 +35,38 @@ limitations under the License.
 
 > Return an unsigned 16-bit integer corresponding to the [IEEE 754][ieee754] binary representation of a [half-precision floating-point number][ieee754].
 
-<section class="installation">
 
-## Installation
-
-```bash
-npm install @stdlib/number-float16-base-to-word
-```
-
-Alternatively,
-
--   To load the package in a website via a `script` tag without installation and bundlers, use the [ES Module][es-module] available on the [`esm`][esm-url] branch (see [README][esm-readme]).
--   If you are using Deno, visit the [`deno`][deno-url] branch (see [README][deno-readme] for usage intructions).
--   For use in Observable, or in browser/node environments, use the [Universal Module Definition (UMD)][umd] build available on the [`umd`][umd-url] branch (see [README][umd-readme]).
-
-The [branches.md][branches-url] file summarizes the available branches and displays a diagram illustrating their relationships.
-
-To view installation and usage instructions specific to each branch build, be sure to explicitly navigate to the respective README files on each branch, as linked to above.
-
-</section>
 
 <section class="usage">
 
 ## Usage
 
+To use in Observable,
+
 ```javascript
-var toWord = require( '@stdlib/number-float16-base-to-word' );
+toWord = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/number-float16-base-to-word@umd/browser.js' )
+```
+
+To vendor stdlib functionality and avoid installing dependency trees for Node.js, you can use the UMD server build:
+
+```javascript
+var toWord = require( 'path/to/vendor/umd/number-float16-base-to-word/index.js' )
+```
+
+To include the bundle in a webpage,
+
+```html
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/number-float16-base-to-word@umd/browser.js"></script>
+```
+
+If no recognized module system is present, access bundle contents via the global scope:
+
+```html
+<script type="text/javascript">
+(function () {
+    window.toWord;
+})();
+</script>
 ```
 
 #### toWord( x )
@@ -93,14 +99,19 @@ var w = toWord( f16 ); // => 0 01111 0000110011
 
 <!-- eslint no-undef: "error" -->
 
-```javascript
-var float64ToFloat16 = require( '@stdlib/number-float64-base-to-float16' );
-var uniform = require( '@stdlib/random-array-uniform' );
-var map = require( '@stdlib/array-base-map' );
-var naryFunction = require( '@stdlib/utils-nary-function' );
-var pickArguments = require( '@stdlib/utils-pick-arguments' );
-var logEachMap = require( '@stdlib/console-log-each-map' );
-var toWord = require( '@stdlib/number-float16-base-to-word' );
+```html
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/number-float64-base-to-float16@umd/browser.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/random-array-uniform@umd/browser.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/array-base-map@umd/browser.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/utils-nary-function@umd/browser.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/utils-pick-arguments@umd/browser.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/console-log-each-map@umd/browser.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/number-float16-base-to-word@umd/browser.js"></script>
+<script type="text/javascript">
+(function () {
 
 // Generate an array of random double-precision floating-point numbers:
 var f64 = uniform( 1000, -50.0, 50.0 );
@@ -110,6 +121,11 @@ var f16 = map( f64, naryFunction( float64ToFloat16, 1 ) );
 
 // Convert half-precision floating-point numbers to integers representing the binary literal:
 logEachMap( 'float64: %f => float16: %f => word: %d', f64, f16, pickArguments( toWord, [ 1 ] ) );
+
+})();
+</script>
+</body>
+</html>
 ```
 
 </section>
