@@ -42,6 +42,11 @@ limitations under the License.
 ## Usage
 
 ```javascript
+import toWord from 'https://cdn.jsdelivr.net/gh/stdlib-js/number-float16-base-to-word@esm/index.mjs';
+```
+The previous example will load the latest bundled code from the esm branch. Alternatively, you may load a specific version by loading the file from one of the [tagged bundles](https://github.com/stdlib-js/number-float16-base-to-word/tags). For example,
+
+```javascript
 import toWord from 'https://cdn.jsdelivr.net/gh/stdlib-js/number-float16-base-to-word@v0.1.0-esm/index.mjs';
 ```
 
@@ -87,7 +92,7 @@ import map from 'https://cdn.jsdelivr.net/gh/stdlib-js/array-base-map@esm/index.
 import naryFunction from 'https://cdn.jsdelivr.net/gh/stdlib-js/utils-nary-function@esm/index.mjs';
 import pickArguments from 'https://cdn.jsdelivr.net/gh/stdlib-js/utils-pick-arguments@esm/index.mjs';
 import logEachMap from 'https://cdn.jsdelivr.net/gh/stdlib-js/console-log-each-map@esm/index.mjs';
-import toWord from 'https://cdn.jsdelivr.net/gh/stdlib-js/number-float16-base-to-word@v0.1.0-esm/index.mjs';
+import toWord from 'https://cdn.jsdelivr.net/gh/stdlib-js/number-float16-base-to-word@esm/index.mjs';
 
 // Generate an array of random double-precision floating-point numbers:
 var f64 = uniform( 1000, -50.0, 50.0 );
