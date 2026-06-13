@@ -1,5 +1,0 @@
-"use strict";var T=function(e,a){return function(){try{return a||e((a={exports:{}}).exports,a),a.exports}catch(i){throw (a=0, i)}};};var _=T(function(R,F){
-var A=require('@stdlib/constants-float16-ninf/dist'),o=require('@stdlib/constants-float16-pinf/dist'),S=require('@stdlib/math-base-assert-is-nanf/dist'),q=require('@stdlib/math-base-special-absf/dist'),E=require('@stdlib/number-float32-base-exponent/dist'),O=require('@stdlib/math-base-assert-is-negative-zerof/dist'),M=require('@stdlib/constants-float32-significand-mask/dist'),C=require('@stdlib/number-float32-base-to-word/dist'),L=32256,I=31744,N=64512,U=0,p=32768,x=8388608,K=8191,c=4095,B=1023;function P(e){var a,i,v,r,u,n,s,t,f;return S(e)?L:e===o?I:e===A?N:e===0?O(e)?p:U:(e<0?f=1:f=0,e=q(e),s=C(e),t=s&M,a=E(e),i=a+15,i>=31?f?N:I:i<=0?i<-10?f<<15:(n=1-i,r=(x|t)>>>13,n<11?(u=r>>>n-1&1,v=(r&(1<<n-1)-1)!==0,v||(v=(t&K)!==0)):(u=t>>>13-(n-11)-1&1,v=(t&(1<<13-(n-11)-1)-1)!==0),r>>>=n,u&&(v||r&1)&&(r+=1),f<<15|r):(r=t>>>13,u=t>>>12&1,v=(t&c)!==0,u&&(v||r&1)&&(r+=1,r>B&&(i+=1,r=0,i>=31))?f?N:I:f<<15|i<<10|r))}F.exports=P
-});var d=_();module.exports=d;
-/** @license Apache-2.0 */
-//# sourceMappingURL=index.js.map
