@@ -35,32 +35,14 @@ limitations under the License.
 
 > Return an unsigned 16-bit integer corresponding to the [IEEE 754][ieee754] binary representation of a [half-precision floating-point number][ieee754].
 
-<section class="installation">
 
-## Installation
-
-```bash
-npm install @stdlib/number-float16-base-to-word
-```
-
-Alternatively,
-
--   To load the package in a website via a `script` tag without installation and bundlers, use the [ES Module][es-module] available on the [`esm`][esm-url] branch (see [README][esm-readme]).
--   If you are using Deno, visit the [`deno`][deno-url] branch (see [README][deno-readme] for usage intructions).
--   For use in Observable, or in browser/node environments, use the [Universal Module Definition (UMD)][umd] build available on the [`umd`][umd-url] branch (see [README][umd-readme]).
-
-The [branches.md][branches-url] file summarizes the available branches and displays a diagram illustrating their relationships.
-
-To view installation and usage instructions specific to each branch build, be sure to explicitly navigate to the respective README files on each branch, as linked to above.
-
-</section>
 
 <section class="usage">
 
 ## Usage
 
 ```javascript
-var toWord = require( '@stdlib/number-float16-base-to-word' );
+import toWord from 'https://cdn.jsdelivr.net/gh/stdlib-js/number-float16-base-to-word@esm/index.mjs';
 ```
 
 #### toWord( x )
@@ -68,7 +50,7 @@ var toWord = require( '@stdlib/number-float16-base-to-word' );
 Returns an unsigned 16-bit integer corresponding to the [IEEE 754][ieee754] binary representation of a [half-precision floating-point number][ieee754].
 
 ```javascript
-var float64ToFloat16 = require( '@stdlib/number-float64-base-to-float16' );
+import float64ToFloat16 from 'https://cdn.jsdelivr.net/gh/stdlib-js/number-float64-base-to-float16@esm/index.mjs';
 
 var f16 = float64ToFloat16( 1.05 );
 // returns 1.0498046875
@@ -93,14 +75,19 @@ var w = toWord( f16 ); // => 0 01111 0000110011
 
 <!-- eslint no-undef: "error" -->
 
-```javascript
-var float64ToFloat16 = require( '@stdlib/number-float64-base-to-float16' );
-var uniform = require( '@stdlib/random-array-uniform' );
-var map = require( '@stdlib/array-base-map' );
-var naryFunction = require( '@stdlib/utils-nary-function' );
-var pickArguments = require( '@stdlib/utils-pick-arguments' );
-var logEachMap = require( '@stdlib/console-log-each-map' );
-var toWord = require( '@stdlib/number-float16-base-to-word' );
+```html
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<script type="module">
+
+import float64ToFloat16 from 'https://cdn.jsdelivr.net/gh/stdlib-js/number-float64-base-to-float16@esm/index.mjs';
+import uniform from 'https://cdn.jsdelivr.net/gh/stdlib-js/random-array-uniform@esm/index.mjs';
+import map from 'https://cdn.jsdelivr.net/gh/stdlib-js/array-base-map@esm/index.mjs';
+import naryFunction from 'https://cdn.jsdelivr.net/gh/stdlib-js/utils-nary-function@esm/index.mjs';
+import pickArguments from 'https://cdn.jsdelivr.net/gh/stdlib-js/utils-pick-arguments@esm/index.mjs';
+import logEachMap from 'https://cdn.jsdelivr.net/gh/stdlib-js/console-log-each-map@esm/index.mjs';
+import toWord from 'https://cdn.jsdelivr.net/gh/stdlib-js/number-float16-base-to-word@esm/index.mjs';
 
 // Generate an array of random double-precision floating-point numbers:
 var f64 = uniform( 1000, -50.0, 50.0 );
@@ -110,6 +97,10 @@ var f16 = map( f64, naryFunction( float64ToFloat16, 1 ) );
 
 // Convert half-precision floating-point numbers to integers representing the binary literal:
 logEachMap( 'float64: %f => float16: %f => word: %d', f64, f16, pickArguments( toWord, [ 1 ] ) );
+
+</script>
+</body>
+</html>
 ```
 
 </section>
@@ -118,120 +109,7 @@ logEachMap( 'float64: %f => float16: %f => word: %d', f64, f16, pickArguments( t
 
 <!-- C interface documentation. -->
 
-* * *
 
-<section class="c">
-
-## C APIs
-
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-
-<section class="intro">
-
-</section>
-
-<!-- /.intro -->
-
-<!-- C usage documentation. -->
-
-<section class="usage">
-
-### Usage
-
-```c
-#include "stdlib/number/float16/base/to_word.h"
-```
-
-#### stdlib_base_float16_to_word( x, \*word )
-
-Converts a [half-precision floating-point number][ieee754] to an unsigned 16-bit integer corresponding to the number's [IEEE 754][ieee754] binary representation.
-
-```c
-#include "stdlib/number/float16/ctor.h"
-#include <stdint.h>
-
-uint16_t word;
-
-stdlib_float16_t x = stdlib_float16_from_bits( 51648 ); // => -11.5
-stdlib_base_float16_to_word( x, &word );
-```
-
-The function accepts the following arguments:
-
--   **x**: `[in] stdlib_float16_t` input value.
--   **word**: `[out] uint16_t*` destination.
-
-```c
-void stdlib_base_float16_to_word( const stdlib_float16_t x, uint16_t *word );
-```
-
-#### stdlib_base_float16_word_t
-
-An opaque type definition for a union for converting between a [half-precision floating-point number][ieee754] and an unsigned 16-bit integer.
-
-```c
-#include "stdlib/number/float16/ctor.h"
-#include <stdint.h>
-
-stdlib_base_float16_word_t w;
-
-// Assign a half-precision floating-point number:
-w.value = stdlib_float16_from_bits( 51648 ); // => -11.5
-
-// Retrieve the word:
-uint16_t word = w.word;
-```
-
-The union has the following members:
-
--   **value**: `stdlib_float16_t` [half-precision floating-point number][ieee754].
--   **word**: `uint16_t` word.
-
-</section>
-
-<!-- /.usage -->
-
-<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-
-<section class="notes">
-
-</section>
-
-<!-- /.notes -->
-
-<!-- C API usage examples. -->
-
-<section class="examples">
-
-### Examples
-
-```c
-#include "stdlib/number/float64/base/to_float16.h"
-#include "stdlib/number/float16/base/to_word.h"
-#include <stdint.h>
-#include <stdio.h>
-
-int main( void ) {
-    const double x[] = { 3.14, -3.14, 0.0, 0.0/0.0 };
-
-    stdlib_float16_t v;
-    uint16_t word;
-    int i;
-    for ( i = 0; i < 4; i++ ) {
-        v = stdlib_base_float64_to_float16( x[ i ] );
-        stdlib_base_float16_to_word( v, &word );
-        printf( "%lf => word: %u\n", x[ i ], word );
-    }
-}
-```
-
-</section>
-
-<!-- /.examples -->
-
-</section>
-
-<!-- /.c -->
 
 <!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
 
@@ -250,7 +128,7 @@ int main( void ) {
 
 ## Notice
 
-This package is part of [stdlib][stdlib], a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing. The library provides a collection of robust, high performance libraries for mathematics, statistics, streams, utilities, and more.
+This package is part of [stdlib][stdlib], a standard library with an emphasis on numerical and scientific computing. The library provides a collection of robust, high performance libraries for mathematics, statistics, streams, utilities, and more.
 
 For more information on the project, filing bug reports and feature requests, and guidance on how to develop [stdlib][stdlib], see the main project [repository][stdlib].
 
